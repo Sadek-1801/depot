@@ -2,7 +2,8 @@ require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @product = products(:one)
+    @product = products(:orange)
+    @title = "The Great Book #{rand(1000)}"
   end
 
   test "should get index" do
@@ -15,11 +16,23 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+# my solution of different title
+  # test "should create product" do
+  #   assert_difference("Product.count") do
+  #     post products_url, params: { product: {  title: "New Title", description: "new description", image_url: "ruby.jpg", price: 6.50 } }
+  #   end
+  #   assert_redirected_to product_url(Product.last)
+  # end
+
+# books suggession
   test "should create product" do
     assert_difference("Product.count") do
-      post products_url, params: { product: { description: @product.description, image_url: @product.image_url, price: @product.price, title: @product.title } }
+      post products_url,
+        params: { product: {  title: @title,
+                              description: @product.description,
+                              image_url: @product.image_url,
+                              price: @product.price } }
     end
-
     assert_redirected_to product_url(Product.last)
   end
 
@@ -34,7 +47,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update product" do
-    patch product_url(@product), params: { product: { description: @product.description, image_url: @product.image_url, price: @product.price, title: @product.title } }
+    patch product_url(@product),
+      params: { product: { description: @product.description,
+                           image_url: @product.image_url,
+                           price: @product.price,
+                           title: @title } }
     assert_redirected_to product_url(@product)
   end
 
@@ -42,7 +59,6 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("Product.count", -1) do
       delete product_url(@product)
     end
-
     assert_redirected_to products_url
   end
 end
