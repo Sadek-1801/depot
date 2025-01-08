@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 orange:
-  title: Orange
+  title: Orange to control your blood pressure
   description: Orang is full of Vitamin C. It is healthy fruits.
   image_url: orange.jpg
   price: 3.50
 
 apple:
-  title: Apple
+  title: Apple the ultimate energy
   description: If you want to be healthy, you have to eat apple. It provides you the energy you need for work.
   image_url: apple.jpg
   price: 4.50
